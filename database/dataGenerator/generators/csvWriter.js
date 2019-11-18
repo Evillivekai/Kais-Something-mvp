@@ -1,30 +1,65 @@
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-const path = ruquire('path');
+const createCsvWriter = require('csv-writer').createArrayCsvWriter;
+const path = require('path');
 // const { u_Generator } = require('./u_Generator.js');
-const { c_Generator } = require('./c_Generator.js');
-const { uc_Generator } = require('./uc_Generator.js');
+const uc_Generator = require('./uc_Generator.js');
+// const uc_Generator = require('./uc_Generator.js');
+// const fileList = [
+//   // 'users.csv',
+//   'coffee.csv',
+//   'users_coffee.csv'
+// ];
+// const headerList = [
+//   // 'usersHeader',
+//   'coffeeHeader',
+//   'UCHeader'
+// ];
+// const generatorList = [
+//   // uGenerator,
+//   c_Generator.cGenerator,
+//   uc_Generator.ucGenerator,
+// ];
 
-const fileList = [/*'users.csv', */'coffee.csv', 'users_coffee.csv'];
-const headerList = [/*'usersHeader', */'coffeeHeader','UCHeader'];
-const generatorList = [/*u_Generator, */c_Generator, uc_Generator];
+// const batchWriter = async (writer, data) => {
+//   await writer.writeRecords(data);
+// }
 
-const batchWriter = async (writer, data) => {
-  await writer.writeRecords(data);
-}
+// // func for async looping write to csv file.
+// const writeToCsv = async (writer, index) => {
+//     let i = [1, 5];
+//     let data = generatorList[index](i[index]);
+//     await batchWriter(writer, data);
+// };
 
-// func for async looping write to csv file.
-const writeToCsv = async (writer, data) => {
-  for (let i = 0; i < 10; i += 1) {
-    data = generatorList[index].(10);
-    await batchWriter(writer, data);
-  }
+// fileList.forEach((file, index) => {
+//   const csvWriter = createCsvWriter({
+//     path: path.join(__dirname, '../', 'CSVfiles', file),
+//     header: headerList[index],
+//   });
+//   writeToCsv(csvWriter, index);
+// });
+
+/* eslint-disable import/no-extraneous-dependencies */
+// const createImgWriter = require('csv-writer').createArrayCsvWriter;
+// const path = require('path');
+// const dataGenerator = require('./imagesGenerator.js');
+
+let Data;
+// ignore header
+const ucHeader = uc_Generator.generateCsvHeader();
+
+const ucWriter = createCsvWriter({
+  path: path.join(__dirname,'../', 'CSVfiles', 'users_coffee.csv'),
+  header: ucHeader,
+});
+
+// 10M
+const writeToCsv = () => {
+    Data = uc_Generator.ucGenerator(5);
+    console.log(Data);
+    ucWriter.writeRecords(Data)
+      .then(() => {
+        console.log('...Done');
+      });
 };
 
-fileList.forEach((file, index) => {
-  let data;
-  const csvWriter = createCsvWriter({
-    path: path.join(__dirname, '../', 'CSVfiles', file),
-    header: headerList[index],
-  });
-  writeToCSV(csvWriter, data);
-});
+writeToCsv();

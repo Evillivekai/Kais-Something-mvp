@@ -16,9 +16,7 @@ DROP TABLE IF EXISTS coffee_list;
 CREATE TABLE coffee_list (
   id SERIAL PRIMARY KEY,
   cof_name VARCHAR(50) NOT NULL,
-  cof_category VARCHAR(50) NOT NULL,
   cof_taste VARCHAR(30) NOT NULL,
-  cof_origin VARCHAR(50) NOT NULL,
   cof_pic TEXT NOT NULL,
   cof_description TEXT
 );
