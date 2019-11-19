@@ -2,19 +2,19 @@ const path = require('path');
 
 module.exports = [{
   // string
-  entry: `${__dirname}/client/src/omdex.js`,
+  entry: `${__dirname}/client/index.jsx`,
   output: {
-    path: path.join(__dirname,'client/public');
+    path: path.join(__dirname,'client/public'),
     filename: 'bundle.js',
   },
   module: {
     rules : [
       {
         test: [/\.jsx$/],
-        exclue: /node_modules/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presset: [
+          presets: [
             '@babel/preset-react',
             '@babel/preset-env',
           ]

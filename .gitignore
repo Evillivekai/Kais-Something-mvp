@@ -1,1 +1,7 @@
+# folder
 node_modules
+database/dataGenerator/CSVfiles
+# files
+.env
+client/public.bundle.js
+package-lock.json
