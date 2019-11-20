@@ -1,6 +1,10 @@
 # folder
 node_modules
 database/dataGenerator/CSVfiles
+assets
+client/public/assets
+Steakin
+.gitignore
 # files
 .env
 client/public.bundle.js

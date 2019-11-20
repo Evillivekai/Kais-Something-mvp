@@ -23,7 +23,7 @@ const checkOneUserColl = (id, callback) => {
 }
 
 const getUserColl = (id, callback) => {
-  const querys = `SELECT (u.id, c.*) FROM users u INNER JOIN users_coffee uc ON u.id = ${id} and u.id = uc.user_id INNER JOIN coffee_list c on uc.cof_id = c.id;`
+  const querys = `SELECT u.id, c.* FROM users u INNER JOIN users_coffee uc ON u.id = ${id} and u.id = uc.user_id INNER JOIN coffee_list c on uc.cof_id = c.id;`
   pool.query(querys, (error, data) => {
     error ? console.error(error) : callback(null, data.rows);
   });
